@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: configMap--backend-service
+server:
+  port: 9000

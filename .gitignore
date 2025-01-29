@@ -1,0 +1,9 @@
+# Created by https://www.toptal.com/developers/gitignore/api/react,git
+### react ###
+.DS_*
+*.log
+logs
+**/*.backup.*
+**/*.back.*
+
+node_modules

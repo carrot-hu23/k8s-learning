@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: hujinbo23/k8s-demo-backend:1.0
+        ports:
+        - containerPort: 9000
+        # 新增启动命令和 ConfigMap 挂载
+        command: ["java", "-jar", "/app.jar", "--spring.config.location=file:/config/application.yml"]
+        volumeMounts:
+        - name: config-volume
+          mountPath: /config
+      volumes:  # 添加卷配置
+      - name: config-volume
+        configMap:
+          name: backend-config
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  selector:
+    app: backend
+  ports:
+    - protocol: TCP
+      port: 9000
+      targetPort: 9000
