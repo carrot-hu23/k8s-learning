@@ -59,19 +59,24 @@ npm run build
 
 ## 2. 创建 configmap
 ```shell
-kubectl applu -f configmap.yaml
+kubectl apply -f backend-configmap.yaml
 ```
 
-## 创建 deployment
+## 3. 创建 service
+```shell
+kubectl apply -f mysql-external.yaml
+```
+
+## 4. 创建 deployment
 ```shell
 kubectl apply -f backend.yaml
 kubectl apply -f frontent.yaml
 ```
 
-## 3. 访问
+## 5. 访问
 浏览器访问 http://localhost:30007
 
-## 4. 重启 deployment
+## 6. 重启 deployment
 
 ```shell
 kubectl rollout restart deployment/backend-deployment 
