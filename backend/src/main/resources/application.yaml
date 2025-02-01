@@ -1,5 +1,15 @@
+server:
+  port: 9000
 spring:
   application:
     name: backend-service
-server:
-  port: 9000
+  datasource:
+    url: jdbc:mysql://192.168.1.6:3306/backend_service
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update

@@ -1,0 +1,20 @@
+# mysql-external.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-service  # 集群内通过此名称访问
+spec:
+  type: ClusterIP      # 默认类型，仅集群内部可访问
+  ports:
+  - port: 3306         # Service 暴露的端口
+    targetPort: 3306   # MySQL 实际端口
+---
+apiVersion: v1
+kind: Endpoints
+metadata:
+  name: mysql-service  # 必须与 Service 同名
+subsets:
+- addresses:
+  - ip: 192.168.1.6  # 替换为真实 IP
+  ports:
+  - port: 3306

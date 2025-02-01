@@ -1,0 +1,22 @@
+# configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: backend-config
+data:
+  application.yml: |  # 注意缩进格式
+    server:
+      port: 9000
+    spring:
+      application:
+        name: backend-service
+      datasource:
+        url: jdbc:mysql://mysql-service/backend_service
+        username: root
+        password: 123456
+        driver-class-name: com.mysql.cj.jdbc.Driver
+      jpa:
+        generate-ddl: true
+        show-sql: true
+        hibernate:
+          ddl-auto: update

@@ -7,3 +7,5 @@ logs
 **/*.back.*
 
 node_modules
+
+.idea
